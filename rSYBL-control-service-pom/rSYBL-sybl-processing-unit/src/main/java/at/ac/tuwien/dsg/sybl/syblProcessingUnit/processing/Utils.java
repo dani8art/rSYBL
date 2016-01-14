@@ -640,9 +640,29 @@ public boolean evaluateCompositeCondition (String compCond)throws MethodNotFound
 	}
 	return false;
 }
-public Comparable evaluateTerm(String term) throws MeasurementNotAvailableException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
+public Double evaluateTerm(String term) throws MeasurementNotAvailableException, NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException  {
 	Double result = 0.0;
 	SYBLDescriptionParser descriptionParser = new SYBLDescriptionParser();
+	
+	String[] compositeTerm = term.split("\\-");
+	if(compositeTerm.length > 1){
+		return evaluateTerm(compositeTerm[0]) - evaluateTerm(compositeTerm[1]);
+	}else{
+		compositeTerm = term.split("\\+");
+		if(compositeTerm.length > 1){
+			return evaluateTerm(compositeTerm[0]) + evaluateTerm(compositeTerm[1]);
+		}else{
+			compositeTerm = term.split("\\*");
+			if(compositeTerm.length > 1){
+				return evaluateTerm(compositeTerm[0]) * evaluateTerm(compositeTerm[1]);
+			}else{
+				compositeTerm = term.split("\\/");
+				if(compositeTerm.length > 1){
+					return evaluateTerm(compositeTerm[0]) / evaluateTerm(compositeTerm[1]);
+				}
+			}
+		}
+	}
 	
 	if ((term.charAt(0) >= 'a')
 			&& (term.charAt(0) <= 'z')) {

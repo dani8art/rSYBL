@@ -1,3 +1,9 @@
+*.project
+*.settings/
+*.classpath
+*~
+rSYBL-control-service-pom/rSYBL-sybl-processing-unit/src/main/java/at/ac/tuwien/dsg/sybl/syblProcessingUnit/processing/Test.java
+
 /rSYBL-control-service-pom/rSYBL-cloud-application-dependency-graph/target/
 /rSYBL-control-service-pom/rSYBL-data-processing-unit/target/
 /rSYBL-control-service-pom/rSYBL-cloud-interaction-unit/target/
