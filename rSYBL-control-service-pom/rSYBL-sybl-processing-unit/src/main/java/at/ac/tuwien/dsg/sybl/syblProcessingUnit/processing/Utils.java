@@ -644,21 +644,21 @@ public Double evaluateTerm(String term) throws MeasurementNotAvailableException,
 	Double result = 0.0;
 	SYBLDescriptionParser descriptionParser = new SYBLDescriptionParser();
 	
-	String[] compositeTerm = term.split("\\-");
+	String[] compositeTerm = term.split("\\*");
 	if(compositeTerm.length > 1){
-		return evaluateTerm(compositeTerm[0]) - evaluateTerm(compositeTerm[1]);
+		return evaluateTerm(compositeTerm[0]) * evaluateTerm(compositeTerm[1]);
 	}else{
-		compositeTerm = term.split("\\+");
+		compositeTerm = term.split("\\/");
 		if(compositeTerm.length > 1){
-			return evaluateTerm(compositeTerm[0]) + evaluateTerm(compositeTerm[1]);
+			return evaluateTerm(compositeTerm[0]) / evaluateTerm(compositeTerm[1]);
 		}else{
-			compositeTerm = term.split("\\*");
+			compositeTerm = term.split("\\-");
 			if(compositeTerm.length > 1){
-				return evaluateTerm(compositeTerm[0]) * evaluateTerm(compositeTerm[1]);
+				return evaluateTerm(compositeTerm[0]) - evaluateTerm(compositeTerm[1]);
 			}else{
-				compositeTerm = term.split("\\/");
+				compositeTerm = term.split("\\+");
 				if(compositeTerm.length > 1){
-					return evaluateTerm(compositeTerm[0]) / evaluateTerm(compositeTerm[1]);
+					return evaluateTerm(compositeTerm[0]) + evaluateTerm(compositeTerm[1]);
 				}
 			}
 		}
